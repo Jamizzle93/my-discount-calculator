@@ -51,4 +51,15 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_edit_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_calculator"
+        app:fabSize="normal"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_percentage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>

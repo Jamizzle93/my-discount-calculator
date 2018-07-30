@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.mysticwater.mydiscountcalculator.util.replaceFragmentInActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,6 +16,17 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        setupFragment()
     }
+
+    private fun setupFragment() {
+        val fragment = findOrCreateViewFragment()
+        replaceFragmentInActivity(fragment, R.id.frame_content)
+    }
+
+    private fun findOrCreateViewFragment() =
+            supportFragmentManager.findFragmentById(R.id.frame_content) ?:
+            CalculateDiscountFragment.newInstance()
 
 }

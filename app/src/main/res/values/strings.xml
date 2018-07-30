@@ -4,4 +4,6 @@
 
     <string name="hint_price">Price</string>
     <string name="hint_percentage">Percentage</string>
+
+    <string name="text_price_zero">£0.00</string>
 </resources>

@@ -20,6 +20,7 @@ class CalculateDiscountFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_calculate, container, false)
 
         calculatedPriceText = view.findViewById(R.id.text_calculated_price)
+        calculatedPriceText.text = getString(R.string.text_price_zero)
 
         setupFab(view)
 

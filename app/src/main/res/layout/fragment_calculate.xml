@@ -51,6 +51,16 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:id="@+id/text_calculated_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_percentage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="36sp"
+        />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_calculate"
         android:layout_width="wrap_content"
@@ -58,7 +68,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_calculator"
         app:fabSize="normal"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_percentage"
+        app:layout_constraintTop_toBottomOf="@+id/text_calculated_price"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

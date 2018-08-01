@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_centre"
         app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
+        <com.mysticwater.mydiscountcalculator.calculatediscount.views.MoneyEditText
             android:id="@+id/input_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -2,37 +2,39 @@ package com.mysticwater.mydiscountcalculator.calculatediscount.views
 
 import android.content.Context
 import android.support.v7.widget.AppCompatEditText
-import android.text.Editable
-import android.text.TextWatcher
+import android.text.Spanned
+import android.text.method.DigitsKeyListener
 import android.util.AttributeSet
-import com.mysticwater.mydiscountcalculator.util.MoneyUtils
 
-class MoneyEditText(context: Context?, attrs: AttributeSet?) :
-        AppCompatEditText(context, attrs), TextWatcher {
-
-    var currentText = "";
+class MoneyEditText(context: Context?, attrs: AttributeSet?) : AppCompatEditText(context, attrs) {
 
     init {
-        addTextChangedListener(this)
+        setFilters()
     }
 
-    override fun afterTextChanged(p0: Editable?) {
+    fun setFilters() {
+        this.filters = arrayOf(moneyInputFilter)
     }
 
-    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-    }
+    object moneyInputFilter : DigitsKeyListener(false, true) {
 
-    override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
-        val textString = text.toString();
+        private const val maxDigitsAfterDecimal = 2
 
-        if (textString != currentText) {
-            this.removeTextChangedListener(this);
+        override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart:
+        Int, dend: Int): CharSequence? {
 
-            val monetaryValue = MoneyUtils.getSmallestDenomination(text.toString())
-            println(monetaryValue)
+            val builder = StringBuilder(dest)
+            builder.insert(dstart, source)
 
-            this.addTextChangedListener(this)
+            val enteredText = builder.toString()
+
+            val decimalIndex = enteredText.indexOf(".")
+            val afterDecimalText = enteredText.substring(decimalIndex + 1)
+            if (afterDecimalText.length > maxDigitsAfterDecimal) {
+                return ""
+            }
+
+            return super.filter(source, start, end, dest, dstart, dend)
         }
     }
-
 }

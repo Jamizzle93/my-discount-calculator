@@ -12,11 +12,11 @@ class MoneyEditText(context: Context?, attrs: AttributeSet?) : AppCompatEditText
         setFilters()
     }
 
-    fun setFilters() {
-        this.filters = arrayOf(moneyInputFilter)
+    private fun setFilters() {
+        this.filters = arrayOf(MoneyInputFilter)
     }
 
-    object moneyInputFilter : DigitsKeyListener(false, true) {
+    object MoneyInputFilter : DigitsKeyListener(false, true) {
 
         private const val maxDigitsAfterDecimal = 2
 
@@ -29,9 +29,11 @@ class MoneyEditText(context: Context?, attrs: AttributeSet?) : AppCompatEditText
             val enteredText = builder.toString()
 
             val decimalIndex = enteredText.indexOf(".")
-            val afterDecimalText = enteredText.substring(decimalIndex + 1)
-            if (afterDecimalText.length > maxDigitsAfterDecimal) {
-                return ""
+            if (decimalIndex > 0) {
+                val afterDecimalText = enteredText.substring(decimalIndex + 1)
+                if (afterDecimalText.length > maxDigitsAfterDecimal) {
+                    return ""
+                }
             }
 
             return super.filter(source, start, end, dest, dstart, dend)

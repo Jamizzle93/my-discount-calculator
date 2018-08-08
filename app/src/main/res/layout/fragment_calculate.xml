@@ -40,13 +40,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline_centre">
 
-        <EditText
+        <com.mysticwater.mydiscountcalculator.calculatediscount.views.PercentEditText
             android:id="@+id/input_percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/hint_percentage"
-            android:inputType="number"
+            android:inputType="numberPassword|textVisiblePassword"
             android:textSize="24sp"/>
 
     </android.support.design.widget.TextInputLayout>

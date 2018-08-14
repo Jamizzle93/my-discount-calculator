@@ -47,6 +47,10 @@ class CalculateDiscountFragment : Fragment() {
     }
 
     private fun setupEditTexts(view: View) {
+        val currencySymbolText: TextView = view.findViewById(R.id.text_currency_symbol)
+        val symbol = MoneyUtils.getCurrencyInstance().symbol
+        currencySymbolText.text = symbol
+
         moneyEditText = view.findViewById(R.id.input_price)
         percentEditText = view.findViewById(R.id.input_percentage)
     }

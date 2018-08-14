@@ -2,9 +2,20 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp">
+
+    <TextView
+        android:id="@+id/text_currency_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/input_layout_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/input_layout_price"
+        tools:text="$"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_price"
@@ -12,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_centre"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/text_currency_symbol">
 
         <com.mysticwater.mydiscountcalculator.calculatediscount.views.MoneyEditText
             android:id="@+id/input_price"
@@ -55,10 +66,10 @@
         android:id="@+id/text_calculated_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_percentage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_percentage"
         />
 
     <android.support.design.widget.FloatingActionButton
@@ -68,8 +79,8 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_calculator"
         app:fabSize="normal"
-        app:layout_constraintTop_toBottomOf="@+id/text_calculated_price"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/text_calculated_price"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -72,6 +72,13 @@ class CalculateDiscountFragment : Fragment() {
         return (money * percentageDecimal).roundToLong()
     }
 
+    private fun formatPrice(price: Long): String {
+        val moneyString = longToMoneyString(price)
+        val symbol = MoneyUtils.getCurrencyInstance().symbol
+
+        return symbol + moneyString
+    }
+
     private fun longToMoneyString(money: Long): String {
         val moneyStr = money.toString()
         return if (moneyStr.length > 2) {
@@ -86,13 +93,6 @@ class CalculateDiscountFragment : Fragment() {
                 "0.0$moneyStr"
             }
         }
-    }
-
-    private fun formatPrice(price: Long): String {
-        val moneyString = longToMoneyString(price)
-        val symbol = MoneyUtils.getCurrencyInstance().symbol
-
-        return symbol + moneyString
     }
 
     companion object {

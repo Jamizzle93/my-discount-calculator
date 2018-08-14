@@ -12,7 +12,6 @@ import com.mysticwater.mydiscountcalculator.R
 import com.mysticwater.mydiscountcalculator.calculatediscount.views.MoneyEditText
 import com.mysticwater.mydiscountcalculator.calculatediscount.views.PercentEditText
 import com.mysticwater.mydiscountcalculator.util.MoneyUtils
-import java.math.RoundingMode
 import kotlin.math.roundToLong
 
 class CalculateDiscountFragment : Fragment() {
@@ -29,7 +28,7 @@ class CalculateDiscountFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_calculate, container, false)
 
         calculatedPriceText = view.findViewById(R.id.text_calculated_price)
-        calculatedPriceText.text = getString(R.string.text_price_zero)
+        calculatedPriceText.text = formatPrice(0)
 
         setupFab(view)
         setupEditTexts(view)
@@ -42,8 +41,7 @@ class CalculateDiscountFragment : Fragment() {
             setOnClickListener {
                 val newPriceView = view.findViewById<TextView>(R.id.text_calculated_price)
 
-                val newPrice = getNewPrice()
-                newPriceView.text = "£$newPrice"
+                newPriceView.text = getNewPrice()
             }
         }
     }
@@ -62,7 +60,7 @@ class CalculateDiscountFragment : Fragment() {
             val percent = Integer.parseInt(percentText)
             val newPrice = calculatePrice(money, percent)
 
-            return longToMoneyString(newPrice)
+            return formatPrice(newPrice)
         }
 
         return "0.00"
@@ -76,9 +74,25 @@ class CalculateDiscountFragment : Fragment() {
 
     private fun longToMoneyString(money: Long): String {
         val moneyStr = money.toString()
-        return moneyStr.substring(0, moneyStr.length - 2) +
-                "." +
-                moneyStr.substring(moneyStr.length - 2)
+        return if (moneyStr.length > 2) {
+            moneyStr.substring(0, moneyStr.length - 2) +
+                    "." +
+                    moneyStr.substring(moneyStr.length - 2)
+        } else {
+            if (moneyStr.length == 2) {
+
+                "0.$moneyStr"
+            } else {
+                "0.0$moneyStr"
+            }
+        }
+    }
+
+    private fun formatPrice(price: Long): String {
+        val moneyString = longToMoneyString(price)
+        val symbol = MoneyUtils.getCurrencyInstance().symbol
+
+        return symbol + moneyString
     }
 
     companion object {

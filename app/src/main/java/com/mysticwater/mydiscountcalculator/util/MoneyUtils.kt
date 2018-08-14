@@ -1,8 +1,23 @@
 package com.mysticwater.mydiscountcalculator.util
 
+import java.util.*
+
 class MoneyUtils {
 
     companion object {
+
+        private var CURRENCY: Currency? = null
+
+        fun getCurrencyInstance(): Currency {
+            if (CURRENCY == null) {
+                synchronized(MoneyUtils::javaClass) {
+                    CURRENCY = Currency.getInstance(Locale.getDefault())
+                }
+            }
+
+            return CURRENCY!!
+        }
+
         fun getSmallestDenomination(moneyText: String): Long {
             val fullMoneyString = formatStringToFullMoney(moneyText)
 

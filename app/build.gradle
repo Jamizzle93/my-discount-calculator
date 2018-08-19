@@ -1,8 +1,15 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+
+private Integer generateVersionCode() {
+    return rootProject.ext.minSdkVersion * 10000000 + rootProject.ext.versionMajor * 10000 + rootProject.ext.versionMinor * 100 + rootProject.ext.versionPatch
+}
+
+private String generateVersionName() {
+    return "${rootProject.ext.versionMajor}.${rootProject.ext.versionMinor}.${rootProject.ext.versionPatch}"
+}
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -10,8 +17,8 @@ android {
         applicationId "com.mysticwater.mydiscountcalculator"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode generateVersionCode()
+        versionName generateVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

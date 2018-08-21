@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">My Discount Calculator</string>
-    <string name="admob_app_id">ca-app-pub-2627791204557886~3992592199</string>
 
     <string name="action_settings">Settings</string>
 
@@ -8,4 +7,9 @@
     <string name="hint_percentage">Percentage</string>
 
     <string name="text_price_zero">£0.00</string>
+
+    <!-- Ad Ids -->
+    <string name="admob_app_id">ca-app-pub-2627791204557886~3992592199</string>
+    <string name="admob_banner_id">ca-app-pub-2627791204557886/7903917048</string>
+
 </resources>

@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.mysticwater.mydiscountcalculator.R
 import com.mysticwater.mydiscountcalculator.calculatediscount.views.MoneyEditText
 import com.mysticwater.mydiscountcalculator.calculatediscount.views.PercentEditText
@@ -32,6 +35,8 @@ class CalculateDiscountFragment : Fragment() {
 
         setupFab(view)
         setupEditTexts(view)
+
+        loadAd(view)
 
         return view
     }
@@ -97,6 +102,12 @@ class CalculateDiscountFragment : Fragment() {
                 "0.0$moneyStr"
             }
         }
+    }
+
+    private fun loadAd(view: View) {
+        val adView = view.findViewById<AdView>(R.id.view_ad)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     companion object {

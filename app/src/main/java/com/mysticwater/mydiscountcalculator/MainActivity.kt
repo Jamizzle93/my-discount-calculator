@@ -2,6 +2,7 @@ package com.mysticwater.mydiscountcalculator
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.google.android.gms.ads.MobileAds
 import com.mysticwater.mydiscountcalculator.calculatediscount.CalculateDiscountFragment
 import com.mysticwater.mydiscountcalculator.util.replaceFragmentInActivity
 
@@ -13,6 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id))
+
         setSupportActionBar(toolbar)
 
         setupFragment()

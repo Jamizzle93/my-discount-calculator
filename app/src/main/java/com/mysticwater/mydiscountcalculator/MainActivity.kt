@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun findOrCreateViewFragment() =
-            supportFragmentManager.findFragmentById(R.id.frame_content) ?:
-            CalculateDiscountFragment.newInstance()
+            supportFragmentManager.findFragmentById(R.id.frame_content)
+                    ?: CalculateDiscountFragment.newInstance()
 
 }

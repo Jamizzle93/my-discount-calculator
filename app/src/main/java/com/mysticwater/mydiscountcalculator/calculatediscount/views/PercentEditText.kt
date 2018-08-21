@@ -10,7 +10,7 @@ import android.util.AttributeSet
 class PercentEditText(context: Context?, attrs: AttributeSet?) : AppCompatEditText(context,
         attrs), TextWatcher {
 
-    var currentText = ""
+    private var currentText = ""
 
     override fun afterTextChanged(p0: Editable?) {
     }

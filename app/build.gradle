@@ -43,4 +43,8 @@ dependencies {
 
     // Crashlytics
     implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.crashlyticsVersion"
+
+    // Ads
+    implementation "com.google.android.gms:play-services-ads:$playServicesVersion"
+
 }

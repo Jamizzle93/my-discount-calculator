@@ -48,6 +48,7 @@ ext {
     constraintLayoutVersion = '1.1.2'
     firebaseVersion = '16.0.0'
     crashlyticsVersion = '2.9.4'
+    playServicesVersion = '15.0.0'
 }
 
 task clean(type: Delete) {

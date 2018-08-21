@@ -46,9 +46,9 @@ ext {
     kotlinVersion = '1.2.60'
     supportLibraryVersion = '28.0.0-rc01'
     constraintLayoutVersion = '1.1.2'
-    firebaseVersion = '16.0.0'
+    firebaseVersion = '16.0.1'
     crashlyticsVersion = '2.9.4'
-    playServicesVersion = '15.0.0'
+    playServicesVersion = '15.0.1'
 }
 
 task clean(type: Delete) {

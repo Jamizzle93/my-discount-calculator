@@ -67,7 +67,7 @@ class CalculateDiscountFragment : Fragment() {
             return formatPrice(newPrice)
         }
 
-        return "0.00"
+        return formatPrice(0)
     }
 
     private fun calculatePrice(money: Long, percent: Int): Long {

@@ -2,20 +2,9 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp">
-
-    <TextView
-        android:id="@+id/text_currency_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/input_layout_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/input_layout_price"
-        tools:text="$"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_price"
@@ -23,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_centre"
-        app:layout_constraintStart_toEndOf="@+id/text_currency_symbol">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.mysticwater.mydiscountcalculator.calculatediscount.views.MoneyEditText
             android:id="@+id/input_price"
@@ -88,11 +77,11 @@
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_banner_id">
+        ads:adUnitId="@string/admob_banner_id"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
     </com.google.android.gms.ads.AdView>
 
 </android.support.constraint.ConstraintLayout>

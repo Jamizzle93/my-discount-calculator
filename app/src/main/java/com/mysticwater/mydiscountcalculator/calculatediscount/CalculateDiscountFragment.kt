@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.mysticwater.mydiscountcalculator.R
@@ -52,10 +51,6 @@ class CalculateDiscountFragment : Fragment() {
     }
 
     private fun setupEditTexts(view: View) {
-        val currencySymbolText: TextView = view.findViewById(R.id.text_currency_symbol)
-        val symbol = MoneyUtils.getCurrencyInstance().symbol
-        currencySymbolText.text = symbol
-
         moneyEditText = view.findViewById(R.id.input_price)
         percentEditText = view.findViewById(R.id.input_percentage)
     }

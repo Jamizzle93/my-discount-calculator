@@ -1,6 +1,7 @@
 package com.mysticwater.mydiscountcalculator.util
 
 import java.util.*
+import kotlin.math.roundToLong
 
 class MoneyUtils {
 
@@ -18,7 +19,16 @@ class MoneyUtils {
             return CURRENCY!!
         }
 
-        fun getSmallestDenomination(moneyText: String): Long {
+        fun calculateNewPrice(moneyString: String, percentString: String): String {
+            val money = getSmallestDenomination(moneyString)
+            val percent = Integer.parseInt(percentString)
+
+            val newPrice = calculatePrice(money, percent)
+
+            return formatPrice(newPrice)
+        }
+
+        private fun getSmallestDenomination(moneyText: String): Long {
             val fullMoneyString = formatStringToFullMoney(moneyText)
 
             val numbersRegex = Regex("[^0-9 ]")
@@ -26,6 +36,7 @@ class MoneyUtils {
 
             return numbers.toLong()
         }
+
 
         private fun formatStringToFullMoney(moneyString: String): String {
             val decimalIndex = moneyString.indexOf(".")
@@ -40,5 +51,35 @@ class MoneyUtils {
                 }
             }
         }
+
+        private fun calculatePrice(money: Long, percent: Int): Long {
+            val percentageDecimal = 1 - (percent.toDouble() / 100)
+
+            return (money * percentageDecimal).roundToLong()
+        }
+
+        fun formatPrice(price: Long): String {
+            val moneyString = longToMoneyString(price)
+            val symbol = MoneyUtils.getCurrencyInstance().symbol
+
+            return symbol + moneyString
+        }
+
+        private fun longToMoneyString(money: Long): String {
+            val moneyStr = money.toString()
+            return if (moneyStr.length > 2) {
+                moneyStr.substring(0, moneyStr.length - 2) +
+                        "." +
+                        moneyStr.substring(moneyStr.length - 2)
+            } else {
+                if (moneyStr.length == 2) {
+
+                    "0.$moneyStr"
+                } else {
+                    "0.0$moneyStr"
+                }
+            }
+        }
+
     }
 }

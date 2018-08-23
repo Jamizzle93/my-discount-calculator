@@ -30,7 +30,7 @@ class CalculateDiscountFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_calculate, container, false)
 
         calculatedPriceText = view.findViewById(R.id.text_calculated_price)
-        calculatedPriceText.text = formatPrice(0)
+        calculatedPriceText.text = MoneyUtils.formatPrice(0)
 
         setupFab(view)
         setupEditTexts(view)
@@ -60,43 +60,10 @@ class CalculateDiscountFragment : Fragment() {
         val percentText = percentEditText.text.toString()
 
         if (!TextUtils.isEmpty(moneyText) && !TextUtils.isEmpty(percentText)) {
-            val money = MoneyUtils.getSmallestDenomination(moneyText)
-            val percent = Integer.parseInt(percentText)
-            val newPrice = calculatePrice(money, percent)
-
-            return formatPrice(newPrice)
+            return MoneyUtils.calculateNewPrice(moneyText, percentText);
         }
 
-        return formatPrice(0)
-    }
-
-    private fun calculatePrice(money: Long, percent: Int): Long {
-        val percentageDecimal = 1 - (percent.toDouble() / 100)
-
-        return (money * percentageDecimal).roundToLong()
-    }
-
-    private fun formatPrice(price: Long): String {
-        val moneyString = longToMoneyString(price)
-        val symbol = MoneyUtils.getCurrencyInstance().symbol
-
-        return symbol + moneyString
-    }
-
-    private fun longToMoneyString(money: Long): String {
-        val moneyStr = money.toString()
-        return if (moneyStr.length > 2) {
-            moneyStr.substring(0, moneyStr.length - 2) +
-                    "." +
-                    moneyStr.substring(moneyStr.length - 2)
-        } else {
-            if (moneyStr.length == 2) {
-
-                "0.$moneyStr"
-            } else {
-                "0.0$moneyStr"
-            }
-        }
+        return MoneyUtils.formatPrice(0)
     }
 
     private fun loadAd(view: View) {
